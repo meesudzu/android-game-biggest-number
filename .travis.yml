@@ -1,12 +1,12 @@
 language: android
 android:
 components:
-  tools
-  platform-tools
-  build-tools-23.0.3
-  android-23
-# Additional components
-  extra-google-google_play_services
-  extra-google-m2repository
-  extra-android-m2repository
-  addon-google_apis-google-19
+tools
+platform-tools
+build-tools-23.0.3
+android-23
+extra-google-google_play_services
+extra-google-m2repository
+extra-android-m2repository
+addon-google_apis-google-19
+group: deprecated-2017Q4
