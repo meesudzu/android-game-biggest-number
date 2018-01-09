@@ -1,21 +1,12 @@
 language: android
 android:
 components:
-tools
-platform-tools
-build-tools-23.0.3
-android-23
+  tools
+  platform-tools
+  build-tools-23.0.3
+  android-23
 # Additional components
-extra-google-google_play_services
-extra-google-m2repository
-extra-android-m2repository
-addon-google_apis-google-19
-# if you need to run emulator(s) during your tests
-sys-img-armeabi-v7a-android-19
-sys-img-x86-android-17
-env:
-global:
-# install timeout: 8 minutes
-ADB_INSTALL_TIMEOUT=8
-before_script:
-cd src
+  extra-google-google_play_services
+  extra-google-m2repository
+  extra-android-m2repository
+  addon-google_apis-google-19
