@@ -1,4 +1,6 @@
 # Android Game Find Biggest Number ( Game Android tìm số lớn nhất )
+[![Build Status](https://travis-ci.org/meesudzu/android-game-biggest-number.svg?branch=master)](https://travis-ci.org/meesudzu/android-game-biggest-number)
+
 1 game đơn giản với những con số, trong thời gian nhanh nhất, bạn phải tìm thấy số lớn nhất và chọn nó. 
 
 Bạn có thể chơi với bạn bè, gia đình và chia sẻ điểm số với nhau, trò chơi là vô tận cho đến khi bạn đạt đến thời gian 0s.
