@@ -1,4 +1,4 @@
-# Android Game Find Biggest Number
+# Android Game - Biggest Number
 [![Build Status](https://travis-ci.org/meesudzu/android-game-biggest-number.svg?branch=master)](https://travis-ci.org/meesudzu/android-game-biggest-number)
 
 The simple game with the numbers.  
