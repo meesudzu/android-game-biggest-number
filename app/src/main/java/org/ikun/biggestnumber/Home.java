@@ -26,21 +26,20 @@ import static java.lang.String.valueOf;
 
 /**
  * Game Project: Biggest Number
- * Author: Dzu
- * FB: http://fb.com/ultildark
- * Mail: meesudzu@gmail.com
- * images + sound from google.com :)
- * credit: stackoverflow
+ * Author: Nong Van Du (Dzu)
+ * Mail: dzu6996@gmail.com
+ * GitHub: https://github.com/meesudzu/android-game-biggest-number
+ * images + sound from google.com
  */
 
 public class Home extends AppCompatActivity {
     RelativeLayout bgHome;
     FrameLayout numberLayout;
-    Random r = new Random();//create random
+    Random r = new Random();
     TextView tvCoin, tvKing;
     ProgressBar progressBar;
-    boolean isOver = false;//check game over
-    int ran, max, rangenum,lv=1, coin=0, count;//random number,max number,range number button,level,coin,count process
+    boolean isOver = false;//flag game over
+    int ran, max, rangenum,lv=1, coin=0, count;//init random number,max number,range number button,level,coin,count process
     Timer timer;
     SharedPreferences saveData;
     int king= 0;
@@ -58,31 +57,31 @@ public class Home extends AppCompatActivity {
         tvKing = (TextView) findViewById(R.id.textViewKing);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         intro = MediaPlayer.create(Home.this, R.raw.intro);//set intro sound
-        success = MediaPlayer.create(Home.this, R.raw.success);//set success sound
+        success = MediaPlayer.create(Home.this, R.raw.success);//set correct sound
         intro.start();
         intro.setLooping(true);
-        saveData = getSharedPreferences ("data_game", Context.MODE_PRIVATE);//creat save data king coin
-        FGetData();//open get data king coin when app run
-        tvKing.setText(String.valueOf(king));//set king coin
+        saveData = getSharedPreferences ("data_game", Context.MODE_PRIVATE);//create save data King coin
+        FGetData();//get data King coin when app start
+        tvKing.setText(String.valueOf(king));//set King coin
         progressBar.setProgress(0);
         progressBar.setMax(100);
         CheckLV();
     }
-    //start function save data king coin
+    //start function save data King coin
     private void FSaveData(int MaxCoin)
     {
         SharedPreferences.Editor edit = saveData.edit();
         edit.putInt("maxCoin",MaxCoin);//save data to maxCoin
-        edit.commit();
+        edit.apply();
     }
-    //end function save data king coin
-    //start function get data king coin
+    //end function save data King coin
+    //start function get data King coin
     private void FGetData()
     {
         king = saveData.getInt("maxCoin",1);//get data from maxCoin, if null set to 1
     }
     //end function get data
-    //start function cowndown time
+    //start function countdown time
     public void CDTime(int Speed)
     {
         count = 0;
@@ -91,13 +90,13 @@ public class Home extends AppCompatActivity {
             @Override
             public void run() {
                 count=  count + 10;
-                progressBar.setProgress(count);//set percent processBar == count
+                progressBar.setProgress(count);//set percent processBar = count
                 if(count==100 && !isOver)
                     GamerOver();//if count max & not Game Over, go to Game OVer
             }
-        },1,Speed);//speed coundown time
+        },1,Speed);//speed countdown time
     }
-    //end function cowndown time
+    //end function countdown time
     //start function check level to create button
     public void CheckLV()
     {
@@ -110,7 +109,7 @@ public class Home extends AppCompatActivity {
                 break;
             case 2:
                 CreatLV(2);
-                CDTime(500);//if level 1,2 create 2 button & and speed = 500 miliseconds
+                CDTime(500);//if level 1,2 create 2 button & and speed = 500ms
                 break;
             case 3:
                 CreatLV(3);
@@ -126,7 +125,7 @@ public class Home extends AppCompatActivity {
                 break;
             case 6:
                 CreatLV(3);
-                CDTime(500);//if level 3,4,5,6 create 2 button & and speed = 500 miliseconds
+                CDTime(500);//if level 3,4,5,6 create 2 button & and speed = 500ms
                 break;
             case 7:
                 CreatLV(5);
@@ -138,16 +137,16 @@ public class Home extends AppCompatActivity {
                 break;
             case 9:
                 CreatLV(5);
-                CDTime(700);//if level 7,8,9 create 5 button & and speed = 700 miliseconds
+                CDTime(700);//if level 7,8,9 create 5 button & and speed = 700ms
                 break;
             default:
                 CreatLV(9);
-                CDTime(1000-lv);//if level 9+ create 9 button & and speed = 1000 miliseconds - level
+                CDTime(1000-lv);//if level 9+ create 9 button & and speed = 1000ms - level
                 break;
         }
     }
     //end function check level
-    //start function creat level
+    //start function create level
     public void CreatLV(int So) {
         max = 0;//set max number = 0
         rangenum = 1;//set range number  = 1
@@ -157,7 +156,7 @@ public class Home extends AppCompatActivity {
                 max = ran;
             }
             //if random number > max number, set it to max
-            String num;//creat text to set in button button
+            String num;//create text to set in button button
             if(ran<10) {
                 num = valueOf("0"+ran);
             } else {
@@ -165,7 +164,7 @@ public class Home extends AppCompatActivity {
             }
             //set text = random number, if <10, + "0" to text
             Button b = new Button(this);
-            CreateButton(b, num);//creat button have text is random number
+            CreateButton(b, num);//create button have text is random number
             rangenum++;
         }
         lv++;
@@ -184,7 +183,7 @@ public class Home extends AppCompatActivity {
                 FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT
         );
         if (rangenum == 1) {
-            params.gravity = (Gravity.LEFT | Gravity.CENTER_VERTICAL);
+            params.gravity = (Gravity.START | Gravity.CENTER_VERTICAL);
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 3) {
@@ -192,7 +191,7 @@ public class Home extends AppCompatActivity {
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 2) {
-            params.gravity = (Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+            params.gravity = (Gravity.END | Gravity.CENTER_VERTICAL);
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 4) {
@@ -204,22 +203,22 @@ public class Home extends AppCompatActivity {
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 6) {
-            params.gravity = (Gravity.TOP | Gravity.LEFT);
+            params.gravity = (Gravity.TOP | Gravity.START);
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 7) {
-            params.gravity = (Gravity.TOP | Gravity.RIGHT);
+            params.gravity = (Gravity.TOP | Gravity.END);
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 8) {
-            params.gravity = (Gravity.BOTTOM | Gravity.LEFT);
+            params.gravity = (Gravity.BOTTOM | Gravity.START);
             numberLayout.addView(NewButton, params);
         }
         if (rangenum == 9) {
-            params.gravity = (Gravity.BOTTOM | Gravity.RIGHT);
+            params.gravity = (Gravity.BOTTOM | Gravity.END);
             numberLayout.addView(NewButton, params);
         }
-        //check range number and add button to there garavity in framelayout
+        //check range number and add button to there garavity in frame layout
         NewButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,13 +235,13 @@ public class Home extends AppCompatActivity {
                         FSaveData(king);
                     }
                     CheckLV();
-                    //check button click, if = max number start success sound, + coin, cancel cowndown time, and save coin, then next level
+                    //check button click, if = max number start success sound, + coin, cancel countdown time, and save coin, then next level
                 } else {
                     isOver = true;
                     intro.stop();
                     GamerOver();
                 }
-                //else game over and stop intro sound, set isOver = true to stop cowndown time
+                //else game over and stop intro sound, set isOver = true to stop countdown time
             }
         });
     }
